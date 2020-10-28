@@ -1,0 +1,1 @@
+API_USERNAME=admin API_PASSWORD=admin uvicorn serve:app --host 0.0.0.0 --port 9899

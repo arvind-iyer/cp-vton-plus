@@ -1,0 +1,1 @@
+python src/predict_tom.py --person-image data/person.jpg --person-mask-image data/person_mask.png --person-parse-image data/person_parse.png --cloth-image output/debug/warped_cloth.jpg --cloth-mask-image output/debug/warped_mask.jpg --pose-file data/person_pose.json

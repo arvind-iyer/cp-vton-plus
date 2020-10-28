@@ -1,0 +1,1 @@
+python predict_gmm.py --person-image data/person.jpg --person-mask-image data/person_mask.png --person-parse-image data/person_parse.png --cloth-image data/cloth.jpg --cloth-mask-image data/cloth_mask.jpg --pose-file data/person_pose.json
