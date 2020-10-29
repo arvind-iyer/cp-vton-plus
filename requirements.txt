@@ -4,3 +4,8 @@ tensorboardX
 pillow
 numpy
 opencv-contrib-python
+
+# API Server dependencies
+fastapi==0.61.1
+python-multipart==0.0.5
+aiofiles==0.6.0

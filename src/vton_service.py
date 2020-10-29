@@ -351,10 +351,12 @@ def load_parse_image():
     return Image.open(os.path.join(DATA_DIR, "person_parse.png")).convert("L")
 
 
-def load_person_mask_image():
+def create_mask(parse_image):
     """TODO: Replace with code that runs JPPNet
     """
-    return Image.open(os.path.join(DATA_DIR, "person_mask.png")).convert("L")
+    img = np.array(parse_image)
+    img[img > 0] = 255
+    return Image.fromarray(img).convert("L")
 
 
 class InferenceEngine:
@@ -366,7 +368,7 @@ class InferenceEngine:
         self.gmm.load()
         self.tom.load()
 
-    def infer(self, image_file, pose_data, outfit_id="cloth"):
+    def infer(self, image_file, pose_data, person_parse_image, outfit_id="cloth"):
         # load image
         try:
             person_image = Image.open(image_file).convert("RGB")
@@ -378,10 +380,9 @@ class InferenceEngine:
         # get cloth image and mask using the outfit_id
         cloth_image, cloth_mask_image = load_cloth_image(outfit_id)
         # run person segmentation
-        # TODO: create a script to run LIP_JPPNet
-        person_parse_image = load_parse_image()
+        # person_parse_image = load_parse_image()
         # get binary body mask
-        person_mask_image = load_person_mask_image()
+        person_mask_image = create_mask(person_parse_image)
         # process neck segment
         # run gmm
         inputs = self.gmm.prepare_inputs(

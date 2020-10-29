@@ -100,10 +100,10 @@ def predict(sess, image):
     inputs_ = preprocess(image)
     input_h, input_w = inputs_.shape[2:]
     
-    outputs_ = sess.run('import/Mean_3:0', feed_dict={'import/input:0': inputs_})
+    outputs_ = sess.run('Mean_3:0', feed_dict={'input:0': inputs_})
     print(outputs_.shape)
     grayscale_out = postprocess(outputs_, (input_w, input_h))
-    return grayscale_out
+    return grayscale_out.astype(np.uint8)
 
 
 if __name__ == "__main__":
